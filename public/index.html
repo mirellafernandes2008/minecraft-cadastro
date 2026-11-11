@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Minecraft | Campeonato Oficial</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+
+    <header class="topo">
+        <div class="logo">MINECRAFT</div>
+        <p>TORNEIO DOS BLOCOS</p>
+    </header>
+
+    <section class="apresentacao">
+        <span class="tag">INSCRIÇÕES ABERTAS</span>
+
+        <h1>PREPARE-SE PARA A BATALHA!</h1>
+
+        <p>
+            Entre nessa aventura, registre seu nickname
+            e participe da nossa competição Minecraft.
+        </p>
+
+        <div class="detalhes">
+            <div>
+                <span>⚔️</span>
+                <strong>COMPETIÇÃO</strong>
+            </div>
+
+            <div>
+                <span>⛏️</span>
+                <strong>AVENTURA</strong>
+            </div>
+
+            <div>
+                <span>🏆</span>
+                <strong>VITÓRIA</strong>
+            </div>
+        </div>
+    </section>
+
+    <main class="conteudo">
+
+        <!-- ÁREA DE CADASTRO -->
+
+        <section class="painel cadastro">
+
+            <div class="titulo-painel">
+                <span class="icone">📝</span>
+                <div>
+                    <h2>Inscrição do Jogador</h2>
+                    <p>Preencha seus dados para participar.</p>
+                </div>
+            </div>
+
+            <form id="formulario">
+
+                <label for="nome">Nome completo</label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    maxlength="100"
+                    placeholder="Digite seu nome completo"
+                    required
+                >
+
+                <label for="data_nascimento">
+                    Data de nascimento
+                </label>
+
+                <input
+                    type="date"
+                    id="data_nascimento"
+                    required
+                >
+
+                <label for="nickname">
+                    Nickname do Minecraft
+                </label>
+
+                <input
+                    type="text"
+                    id="nickname"
+                    minlength="3"
+                    maxlength="16"
+                    pattern="[A-Za-z0-9_]{3,16}"
+                    placeholder="Ex: Steve123"
+                    required
+                >
+
+                <button type="submit" id="botaoSalvar">
+                    ⛏️ CONFIRMAR INSCRIÇÃO
+                </button>
+
+                <button
+                    type="button"
+                    id="cancelar"
+                    class="cancelar"
+                    hidden
+                >
+                    CANCELAR EDIÇÃO
+                </button>
+
+            </form>
+
+            <p id="mensagem"></p>
+
+            <div class="aviso">
+                🟢 Confira seus dados antes de confirmar
+                sua inscrição no campeonato!
+            </div>
+
+        </section>
+
+
+        <!-- ÁREA DOS JOGADORES -->
+
+        <section class="painel jogadores">
+
+            <div class="titulo-painel">
+                <span class="icone">🏆</span>
+                <div>
+                    <h2>Participantes inscritos</h2>
+                    <p>Confira os jogadores da competição.</p>
+                </div>
+            </div>
+
+            <div class="tabela">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Nascimento</th>
+                            <th>Nickname</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="listaJogadores">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="rodape-painel">
+                <span>⚔️</span>
+                <p>
+                    Cada jogador tem sua própria história.
+                    Boa sorte na competição!
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>MINECRAFT TOURNAMENT</p>
+        <span>CONSTRUA • EXPLORE • CONQUISTE</span>
+    </footer>
+
+</body>
+</html>
