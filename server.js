@@ -27,41 +27,45 @@ try {
 // Aceita configurações locais ou variáveis de ambiente
 const dbConfig = localConfig.mysql || localConfig;
 
-const db = mysql.createPool({
-    host:
-        process.env.MYSQLHOST ||
-        process.env.DB_HOST ||
-        dbConfig.host,
 
-    port: Number(
-        process.env.MYSQLPORT ||
-        process.env.DB_PORT ||
-        dbConfig.port ||
-        3306
-    ),
+const db = process.env.MYSQL_PRIVATE_URL
+    ? mysql.createPool(process.env.MYSQL_PRIVATE_URL)
+    : mysql.createPool({
+        host:
+            process.env.MYSQLHOST ||
+            process.env.DB_HOST ||
+            dbConfig.host,
 
-    user:
-        process.env.MYSQLUSER ||
-        process.env.DB_USER ||
-        dbConfig.user,
+        port: Number(
+            process.env.MYSQLPORT ||
+            process.env.DB_PORT ||
+            dbConfig.port ||
+            3306
+        ),
 
-    password:
-        process.env.MYSQLPASSWORD ||
-        process.env.DB_PASSWORD ||
-        dbConfig.password,
+        user:
+            process.env.MYSQLUSER ||
+            process.env.DB_USER ||
+            dbConfig.user,
 
-    database:
-        process.env.MYSQLDATABASE ||
-        process.env.DB_NAME ||
-        (typeof dbConfig.database === 'string'
-            ? dbConfig.database
-            : dbConfig.database?.name) ||
-        dbConfig.databaseName,
+        password:
+            process.env.MYSQLPASSWORD ||
+            process.env.DB_PASSWORD ||
+            dbConfig.password,
 
-    waitForConnections: true,
-    connectionLimit: 5,
-    queueLimit: 0
-});
+        database:
+            process.env.MYSQLDATABASE ||
+            process.env.DB_NAME ||
+            (typeof dbConfig.database === 'string'
+                ? dbConfig.database
+                : dbConfig.database?.name) ||
+            dbConfig.databaseName,
+
+        waitForConnections: true,
+        connectionLimit: 5,
+        queueLimit: 0
+    });
+
 
 // Disponibiliza os arquivos da pasta public
 app.use(express.static(path.join(__dirname, 'public')));
@@ -416,6 +420,15 @@ app.get('/ranking', async (req, res) => {
 
 async function iniciar() {
     try {
+        // Cria a tabela de jogadores caso ainda não exista
+await db.execute(`
+    CREATE TABLE IF NOT EXISTS jogadores (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        nome VARCHAR(100) NOT NULL,
+        data_nascimento DATE NOT NULL,
+        nickname VARCHAR(16) NOT NULL UNIQUE
+    )
+`);
         // Cria a tabela do ranking caso ainda não exista
         await db.execute(`
             CREATE TABLE IF NOT EXISTS ranking_memoria (
