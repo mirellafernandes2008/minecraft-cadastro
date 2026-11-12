@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Minecraft | Desafio da Memória</title>
+
+    <link rel="stylesheet" href="jogo.css">
+    <script src="jogo.js" defer></script>
+</head>
+
+<body>
+
+<header>
+    <h1>⛏ MINECRAFT</h1>
+    <p>DESAFIO DA MEMÓRIA</p>
+
+    <nav>
+        <a href="index.html">Cadastro de jogadores</a>
+        <a href="jogo.html">Jogo da memória</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section id="inicio" class="painel">
+        <div class="bloco-titulo">NOVO DESAFIO</div>
+
+        <h2>Prepare-se, aventureiro!</h2>
+
+        <p>
+            Encontre os 8 pares de itens do Minecraft.
+            Seja rápido e conquiste o primeiro lugar!
+        </p>
+
+        <div class="cadastro-jogo">
+            <label for="nickname">Seu nickname do Minecraft:</label>
+            <input
+                type="text"
+                id="nickname"
+                placeholder="Digite seu nickname"
+                maxlength="16"
+                autocomplete="off"
+            >
+
+            <small>É necessário estar cadastrado no campeonato.</small>
+
+            <p id="mensagem" role="alert"></p>
+        </div>
+
+        <button id="btnIniciar">INICIAR AVENTURA</button>
+    </section>
+
+    <section class="painel ranking-painel">
+        <div class="bloco-titulo">HALL DA FAMA</div>
+        <h2>🏆 Melhores jogadores</h2>
+
+        <div id="rankingInicial" class="ranking-lista">
+            <p>Carregando ranking...</p>
+        </div>
+    </section>
+
+    <section id="areaJogo" class="painel" hidden>
+
+        <div class="bloco-titulo">INVENTÁRIO DA MEMÓRIA</div>
+
+        <h2>Encontre os pares!</h2>
+
+        <p class="jogador-atual">
+            Jogador: <strong id="jogadorAtual"></strong>
+        </p>
+
+        <div class="informacoes">
+            <div>⏱ TEMPO<strong id="tempo">00:00</strong></div>
+            <div>🎯 TENTATIVAS<strong id="tentativas">0</strong></div>
+            <div>💎 PARES<strong id="pares">0/8</strong></div>
+        </div>
+
+        <div id="tabuleiro" class="tabuleiro"></div>
+
+    </section>
+
+    <section id="resultado" class="painel" hidden>
+
+        <div class="bloco-titulo">MISSÃO CONCLUÍDA</div>
+
+        <h2>🏆 PARABÉNS, JOGADOR!</h2>
+
+        <p>Você encontrou todos os pares!</p>
+
+        <div class="resultado-tempo" id="tempoFinal"></div>
+
+        <p id="tentativasFinais"></p>
+
+        <div id="mensagemResultado" role="status"></div>
+
+        <div class="bloco-titulo">PÓDIO DOS CAMPEÕES</div>
+
+        <div id="podio" class="podio">
+            <p>Carregando classificação...</p>
+        </div>
+
+        <button id="btnNovamente">JOGAR NOVAMENTE</button>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>MINECRAFT MEMORY GAME</p>
+    <p>Construa sua história. Conquiste seu lugar no pódio!</p>
+</footer>
+
+</body>
+</html>
